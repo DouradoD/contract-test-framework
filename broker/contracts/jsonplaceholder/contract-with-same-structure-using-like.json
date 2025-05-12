@@ -1,9 +1,9 @@
 {
   "consumer": {
-    "name": "Consumer"
+    "name": "contract-with-same-structure"
   },
   "provider": {
-    "name": "Provider"
+    "name": "using-like"
   },
   "interactions": [
     {
@@ -18,7 +18,8 @@
           "Accept-Encoding": "gzip, deflate",
           "Accept": "*/*",
           "Connection": "keep-alive",
-          "Version": "HTTP/1.1"
+          "Version": "HTTP/1.1",
+          "Content-Type": "application/json"
         }
       },
       "response": {
@@ -26,10 +27,15 @@
         "headers": {
         },
         "body": {
-          "userId": 10,
-          "id": 100,
-          "title": "at nam consequatur ea labore ea harum",
-          "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
+          "userId": 0,
+          "id": 0,
+          "title": "String",
+          "body": "String"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
         }
       }
     }
