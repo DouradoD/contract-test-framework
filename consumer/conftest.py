@@ -24,3 +24,9 @@ def consumer_contracts_dir_path():
     CONTRACT_DIR = Path(__file__).parent / 'consumer_contracts'
     # Go up to project root (adjust number of dirname calls as needed)
     return CONTRACT_DIR
+
+@pytest.fixture(scope='session')
+def contract_dir_path():
+    # Create the contract directory path thorgh the current file's parent directory
+    CONTRACT_DIR = Path(__file__).parent.parent / 'broker' / 'contracts'
+    return CONTRACT_DIR

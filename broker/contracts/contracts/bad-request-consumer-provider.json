@@ -11,7 +11,10 @@
       "providerState": "A contract with invalid id exists",
       "request": {
         "method": "GET",
-        "path": "/accounts/v2/contracts"
+        "path": "/accounts/v2/contracts",
+        "headers": {
+          "Cookie": "incap_ses_1694_2295595=OLaOY1Ji0TQxHW33JkyCF+VKI2gAAAAA3lNdJNb5eixJMJ1aVBRNvw==; nlbi_2295595=WxVDdH2vNWMU61sY8t60EwAAAADb+P0m+Ji7r30aTx+8sor4; visid_incap_2295595=+tcWkNdHT8GbyUhuvTlig8sxImgAAAAAQUIPAAAAAADS1zLUroIdO1djLeF2jdVz"
+        }
       },
       "response": {
         "status": 401,
@@ -24,9 +27,6 @@
           "message": "The request does not contain any authorization token or the authorization token is invalid."
         },
         "matchingRules": {
-          "$.body": {
-            "match": "type"
-          },
           "$.body.timestamp": {
             "match": "type"
           },
