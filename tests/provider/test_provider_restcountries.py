@@ -15,7 +15,7 @@ os.environ['PACT_DEBUG'] = 'true'  # Gets more verbose output
 
 os.environ["PYTHONIOENCODING"] = "utf-8"
 
-PROVIDER_BASE_URL = "https://reqres.in/api"
+PROVIDER_BASE_URL = "https://restcountries.com/v3.1"
 
 
 @pytest.mark.parametrize("contract_name", 
@@ -23,7 +23,7 @@ PROVIDER_BASE_URL = "https://reqres.in/api"
                      'bad-request-consumer-provider.json'])
 def test_contract_provider(contract_dir_path, contract_name):
     # Path to the contract file
-    CONTRACT_DIR = os.path.join(contract_dir_path, 'users')
+    CONTRACT_DIR = os.path.join(contract_dir_path, 'countries')
     CONTRACT_PATH = os.path.join(CONTRACT_DIR, contract_name)
     verifier = Verifier(
         provider='Provider',

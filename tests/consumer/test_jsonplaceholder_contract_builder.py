@@ -4,9 +4,6 @@ import atexit
 from pact import Consumer, Like, Provider
 from helpers.helper import read_json_file
 
-def create_jsonplaceholder_directory(contract_dir_path):
-    pact_dir_path = os.path.join(contract_dir_path, 'jsonplaceholder')
-    pact_dir_path.mkdir(parents=True, exist_ok=True)
 
 # Creating a contract to test the provider with the same values using the mock-data.json file
 def test_build_contract_with_the_same_structure_and_values(contract_dir_path, consumer_contracts_dir_path):

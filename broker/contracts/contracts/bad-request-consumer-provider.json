@@ -1,0 +1,51 @@
+{
+  "consumer": {
+    "name": "bad-request-consumer"
+  },
+  "provider": {
+    "name": "provider"
+  },
+  "interactions": [
+    {
+      "description": "A request for contract using invalid id",
+      "providerState": "A contract with invalid id exists",
+      "request": {
+        "method": "GET",
+        "path": "/accounts/v2/contracts"
+      },
+      "response": {
+        "status": 401,
+        "headers": {
+        },
+        "body": {
+          "timestamp": 1747143931994,
+          "status": 401,
+          "error": "Unauthorized",
+          "message": "The request does not contain any authorization token or the authorization token is invalid."
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          },
+          "$.body.timestamp": {
+            "match": "type"
+          },
+          "$.body.status": {
+            "match": "type"
+          },
+          "$.body.error": {
+            "match": "type"
+          },
+          "$.body.message": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
