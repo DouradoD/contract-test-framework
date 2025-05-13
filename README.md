@@ -7,6 +7,8 @@ Helper: https://docs.pact.io/implementation_guides/python
 ---
 
 ## Folder Structure
+
+```
 contract-test-framework/
 ├── broker/                          # Acts as local Pact Broker
 │   └── contracts/                   # Generated contract files
@@ -44,9 +46,10 @@ contract-test-framework/
 ├── Dockerfile                       # Pact test environment TBD
 ├── docker-compose.yml               # Service definitions TBD
 └── README.md                        # Project docs
+```
 
 # Notes and Considerations
-'''
+```
 While pact-python is a powerful tool for contract testing, there are several challenges and limitations to be aware of:
 
 Log Clarity:
@@ -69,5 +72,6 @@ Deprecation Warnings:
 
 Many classes and methods in pact-python are marked for deprecation, which may require significant refactoring in the future.
 
-'''
+```
+
 
