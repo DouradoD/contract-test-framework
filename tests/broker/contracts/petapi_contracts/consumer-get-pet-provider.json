@@ -1,0 +1,38 @@
+{
+  "consumer": {
+    "name": "consumer-get-pet"
+  },
+  "provider": {
+    "name": "provider"
+  },
+  "interactions": [
+    {
+      "description": "A request for get pet with id 1",
+      "providerState": "A user checking the pet with id 1",
+      "request": {
+        "method": "GET",
+        "path": "/pets/1"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "category": "dog",
+          "id": 1,
+          "name": "Bug"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

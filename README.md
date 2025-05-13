@@ -99,25 +99,25 @@ Navigate to the project's root directory.
 
 ### Contract creator - Execute the following command:(Windows)
    ```bash
-        pytest .\consumer\tests\
+        pytest .tests\consumer\tests\
         or 
-        pytest .\consumer\tests\test_{file_name}.py
+        pytest .tests\consumer\tests\test_{file_name}.py
    ```
 
 ### Contract creator - Execute the following command:(Linux)
    ```bash
-        pytest ./consumer/tests/
+        pytest ./tests/consumer/tests/
         # or
-        pytest ./consumer/tests/test_{file_name}.py
+        pytest ./tests/consumer/tests/test_{file_name}.py
    ```
 
 Note: Check the contracts created on ./broker/contracts/
 
-### Check the contracts created on ./broker/contracts/
+### Check the contracts created on ./broker/contracts/(Windows)
 
    ```bash
-      pytest ./provider/tests/
-        # orpact
+        pytest ./provider/tests/
+        # or
         pytest ./provider/tests/test_{file_name}.py
    ```
 
