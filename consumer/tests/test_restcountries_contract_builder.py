@@ -1,4 +1,3 @@
-import os
 import requests
 import atexit
 from pact import Consumer, EachLike, Like, Provider, Term

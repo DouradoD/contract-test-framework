@@ -1,7 +1,4 @@
 import json
-import os
-from pact import Consumer, Provider
-
 
 def read_json_file(file_path):
     """

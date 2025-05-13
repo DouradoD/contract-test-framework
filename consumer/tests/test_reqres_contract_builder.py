@@ -1,8 +1,6 @@
-import os
 import requests
 import atexit
 from pact import Consumer, Like, Provider
-from helpers.helper import read_json_file
 
 
 # Creating a contract to test the provider with the same values using the mock-data.json file

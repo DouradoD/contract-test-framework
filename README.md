@@ -11,25 +11,24 @@ Helper: https://docs.pact.io/implementation_guides/python
 ```
 contract-test-framework/
 ├── broker/                          # Acts as local Pact Broker
-│   └── contracts/                   # Generated contract files
-│       └── folders
+│   └── contracts/                   
+│       └── folders                  # Generated contract files -> This folders are generated during the contract builder(consumer) execution
 │            └── consumer-provider.json   # Example contract
 │
 ├── consumer/
 │   ├── contracts/                   # Consumer contract definitions
-│   │   ├── mock-data/               # Organized by endpoint
-│   │   │   ├── countries/
-│   │   │   │   └── brazil.json      # Example mock response
+│   │   ├── jsonplaceholder/         # Organized by endpoint
+│   │       └── mock-data.json       # Example mock response
 │   │
 │   └── tests/
-│       ├── contract_tests/          # Pact contract tests
+│       ├── contract_tests/          # Pact contract tests builder
 │       │   └── test_country_api_builder_contract.py
-│       └── unit/                    # Regular unit tests
-│           └── test_helpers.py
+│       └── conftest.py/             # Pytest setup
 │
 ├── provider/
 │   └── tests/
-│       │   └── verify_contracts.py
+│       │   └── verify_contracts.py  # Provider code
+│       └── conftest.py/             # Pytest setup
 │
 ├── .vscode/
 │   └── launch.json                  # Debug configs
@@ -45,7 +44,8 @@ contract-test-framework/
 ├── requirements.txt                 # Python dependencies
 ├── Dockerfile                       # Pact test environment TBD
 ├── docker-compose.yml               # Service definitions TBD
-└── README.md                        # Project docs
+├── pytest.init                      # Define the 
+└── README.md                        # SET PYTHONPATH to pytest
 ```
 
 # Notes and Considerations
@@ -74,4 +74,49 @@ Many classes and methods in pact-python are marked for deprecation, which may re
 
 ```
 
+## Requirements
 
+- Python 3.8 or higher.
+
+## Installation
+
+1. Clone the repository.
+2. Navigate to the project's root directory.
+3. Create a local venv, if it does not exists.
+   ```bash
+   python -m venv .venv
+   ```
+  Activate the local env on terminal -> Windows - .\.venv\Scripts\Activate
+4. Install the dependencies using the following command:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+## Usage
+To execute the tests, follow the steps below:
+
+Navigate to the project's root directory.
+
+### Contract creator - Execute the following command:(Windows)
+   ```bash
+        pytest .\consumer\tests\
+        or 
+        pytest .\consumer\tests\test_{file_name}.py
+   ```
+
+### Contract creator - Execute the following command:(Windows)
+   ```bash
+        pytest ./consumer/tests/
+        # or
+        pytest ./consumer/tests/test_{file_name}.py
+   ```
+
+Note: Check the contracts created on ./broker/contracts/
+
+### Check the contracts created on ./broker/contracts/
+
+   ```bash
+      pytest ./provider/tests/
+        # or
+        pytest ./provider/tests/test_{file_name}.py
+   ```

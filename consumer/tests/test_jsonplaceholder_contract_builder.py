@@ -1,4 +1,3 @@
-import os
 import requests
 import atexit
 from pact import Consumer, Like, Provider
@@ -7,7 +6,7 @@ from helpers.helper import read_json_file
 
 # Creating a contract to test the provider with the same values using the mock-data.json file
 def test_build_contract_with_the_same_structure_and_values(contract_dir_path, consumer_contracts_dir_path):
-    expected = read_json_file(f'{consumer_contracts_dir_path}/mock-data.json')
+    expected = read_json_file(f'{consumer_contracts_dir_path}/jsonplaceholder/mock-data.json')
 
     pact = Consumer('contract-with-same-structure').has_pact_with(
         Provider('and-values'),
