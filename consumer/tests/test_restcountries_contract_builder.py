@@ -17,8 +17,8 @@ def test_build_contract_with_the_same_structure_and_values(contract_dir_path):
         }
     }
 })
-    pact = Consumer('contract-with-same-structure').has_pact_with(
-        Provider('and-values'),
+    pact = Consumer('consumer-get-country-success').has_pact_with(
+        Provider('provider'),
         pact_dir=f'{contract_dir_path}/countries',
         log_dir='./logs'
     )
@@ -30,7 +30,6 @@ def test_build_contract_with_the_same_structure_and_values(contract_dir_path):
     
     (
         pact
-        .given(f'A country with name Brazil exists')
         .upon_receiving(f'A request for countries with name Brazil')
         .with_request(
             method='GET', 
@@ -56,7 +55,7 @@ def test_build_contract_with_the_same_structure_and_values(contract_dir_path):
 def test_build_contract_with_invalid_values(contract_dir_path):
     expected = {"message":"Not Found","status":404}
 
-    pact = Consumer('bad-request-consumer').has_pact_with(
+    pact = Consumer('consumer-get-country-bad-request').has_pact_with(
         Provider('provider'),
         pact_dir=f'{contract_dir_path}/countries',
         log_dir='./logs'
@@ -66,7 +65,6 @@ def test_build_contract_with_invalid_values(contract_dir_path):
 
     (
         pact
-        .given(f'A user with id 1 exists')
         .upon_receiving(f'A request for user with id 1')
         .with_request(
             method='GET', 

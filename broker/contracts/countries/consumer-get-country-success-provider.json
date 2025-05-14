@@ -1,14 +1,13 @@
 {
   "consumer": {
-    "name": "contract-with-same-structure"
+    "name": "consumer-get-country-success"
   },
   "provider": {
-    "name": "and-values"
+    "name": "provider"
   },
   "interactions": [
     {
       "description": "A request for countries with name Brazil",
-      "providerState": "A country with name Brazil exists",
       "request": {
         "method": "GET",
         "path": "/name/brazil",

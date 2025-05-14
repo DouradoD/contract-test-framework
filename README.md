@@ -104,7 +104,7 @@ Navigate to the project's root directory.
         pytest .\consumer\tests\test_{file_name}.py
    ```
 
-### Contract creator - Execute the following command:(Windows)
+### Contract creator - Execute the following command:(Linux)
    ```bash
         pytest ./consumer/tests/
         # or
@@ -117,6 +117,36 @@ Note: Check the contracts created on ./broker/contracts/
 
    ```bash
       pytest ./provider/tests/
-        # or
+        # orpact
         pytest ./provider/tests/test_{file_name}.py
    ```
+
+### Using Pact Broker (Docker)
+
+#### Dependencies:
+Note: The contracts created by consumer SHOULD exists OR you need to run the consumer tests to build the contracts.
+
+#### How to run?
+
+1 - Open a terminal and execute start the pactfoundation/pact-broker and postgres images
+   ```bash
+      docker-compose -f broker/docker-compose.yml up
+   ```
+2 - Check if the PactBrocker is running
+   - Open a browser and use this URL: http://localhost:9292
+3 - Publish the contracts on PactBroker
+   ```bash
+      pact-broker publish ./broker/contracts/<folder-with-the-pact-contracts> --consumer-app-version=1.0.0 --broker-base-url=http://localhost:9292  
+   ```
+4 - Run the Verify to check the Pact: Doc: https://docs.pact.io/implementation_guides/python/docs/provider
+   ```bash
+      pact-verifier --provider-base-url="https://restcountries.com/v3.1" --provider-app-version="1.0.0" --pact-url=http://localhost:9292/pacts/provider/<provider-value-inside-the-contract>/consumer/<consumer-value-inside-the-contract>/latest --publish-verification-results --enable-pending
+   ```
+   or 
+   Run the Verify to check all contracts
+   ```bash
+      pact-verifier --provider-base-url="https://restcountries.com/v3.1" --provider-app-version="1.0.0" --pact-broker-url=http://localhost:9292 --provider="provider" --publish-verification-results --enable-pending
+   ```
+
+
+

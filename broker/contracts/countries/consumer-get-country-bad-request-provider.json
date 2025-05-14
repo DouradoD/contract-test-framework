@@ -1,6 +1,6 @@
 {
   "consumer": {
-    "name": "bad-request-consumer"
+    "name": "consumer-get-country-bad-request"
   },
   "provider": {
     "name": "provider"
@@ -8,7 +8,6 @@
   "interactions": [
     {
       "description": "A request for user with id 1",
-      "providerState": "A user with id 1 exists",
       "request": {
         "method": "GET",
         "path": "/name/3"
