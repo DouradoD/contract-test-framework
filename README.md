@@ -116,9 +116,9 @@ Note: Check the contracts created on ./broker/contracts/
 ### Check the contracts created on ./broker/contracts/(Windows)
 
    ```bash
-        pytest ./provider/tests/
+        pytest .tests/provider/tests/
         # or
-        pytest ./provider/tests/test_{file_name}.py
+        pytest .tests/provider/tests/test_{file_name}.py
    ```
 
 ### Using Pact Broker (Docker)
@@ -130,13 +130,13 @@ Note: The contracts created by consumer SHOULD exists OR you need to run the con
 
 1 - Open a terminal and execute start the pactfoundation/pact-broker and postgres images
    ```bash
-      docker-compose -f broker/docker-compose.yml up
+      docker-compose -f tests/broker/docker-compose.yml up
    ```
 2 - Check if the PactBrocker is running
    - Open a browser and use this URL: http://localhost:9292
 3 - Publish the contracts on PactBroker
    ```bash
-      pact-broker publish ./broker/contracts/<folder-with-the-pact-contracts> --consumer-app-version=1.0.0 --broker-base-url=http://localhost:9292  
+      pact-broker publish tests/broker/contracts/countries --consumer-app-version=1.0.0 --broker-base-url=http://localhost:9292 --tag=dev
    ```
 4 - Run the Verify to check the Pact: Doc: https://docs.pact.io/implementation_guides/python/docs/provider
    ```bash
@@ -145,8 +145,24 @@ Note: The contracts created by consumer SHOULD exists OR you need to run the con
    or 
    Run the Verify to check all contracts
    ```bash
-      pact-verifier --provider-base-url="https://restcountries.com/v3.1" --provider-app-version="1.0.0" --pact-broker-url=http://localhost:9292 --provider="provider" --publish-verification-results --enable-pending
+      pact-verifier --provider-base-url="https://restcountries.com/v3.1" --provider-app-version="1.0.0" --pact-broker-url=http://localhost:9292 --provider="provider" --publish-verification-results --enable-pending 
    ```
+
+#### Using tags:
+3 - Publish the contracts on PactBroker
+   ```bash
+      pact-broker publish tests/broker/contracts/<folder-with-the-pact-contracts> --consumer-app-version=1.0.1 --broker-base-url=http://localhost:9292 --tag=dev
+   ```
+4 - Run the Verify to check the Pact: Doc: https://docs.pact.io/implementation_guides/python/docs/provider
+   ```bash
+      pact-verifier --provider-base-url="https://restcountries.com/v3.1" --provider-app-version="1.0.1" --pact-url=http://localhost:9292/pacts/provider/<provider-value-inside-the-contract>/consumer/<consumer-value-inside-the-contract>/dev --publish-verification-results --enable-pending
+   ```
+   or 
+   Run the Verify to check all contracts
+   ```bash
+      pact-verifier --provider-base-url="https://restcountries.com/v3.1" --provider-app-version="1.0.1" --pact-broker-url=http://localhost:9292 --provider="provider" --publish-verification-results --enable-pending --consumer-version-tag=dev --provider-version-tag=dev
+   ```
+CLI command documentation: https://docs.pact.io/implementation_guides/python/docs/provider
 
 
 
