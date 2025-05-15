@@ -1,13 +1,10 @@
 from apiflask import APIFlask, Schema, abort
 from apiflask.fields import Integer, String
 from apiflask.validators import Length, OneOf
-from flasgger import Swagger, swag_from
 
 
 app = APIFlask(__name__, spec_path='/spec')
 app.config['LOCAL_SPEC_PATH'] = 'openapi.yaml'
-swagger = Swagger(app)
-
 
 
 pets = [

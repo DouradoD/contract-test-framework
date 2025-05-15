@@ -1,0 +1,47 @@
+{
+  "consumer": {
+    "name": "consumer-get-success-2"
+  },
+  "provider": {
+    "name": "provider-jsonplaceholder"
+  },
+  "interactions": [
+    {
+      "description": "A request for user with id 1",
+      "request": {
+        "method": "GET",
+        "path": "/posts/100",
+        "headers": {
+          "Host": "localhost:1234",
+          "User-Agent": "python-requests/2.32.3",
+          "Accept-Encoding": "gzip, deflate",
+          "Accept": "*/*",
+          "Connection": "keep-alive",
+          "Version": "HTTP/1.1",
+          "Content-Type": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "userId": 0,
+          "id": 0,
+          "title": "String",
+          "body": "String"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

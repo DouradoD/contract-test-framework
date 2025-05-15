@@ -2,8 +2,6 @@
 
 This project is a contract testing framework designed to validate interactions between a consumer and a provider using the Pact framework.
 
-Helper: https://docs.pact.io/implementation_guides/python
-
 ---
 
 ## Folder Structure
@@ -77,6 +75,7 @@ Many classes and methods in pact-python are marked for deprecation, which may re
 ## Requirements
 
 - Python 3.8 or higher.
+- Ruby
 
 ## Installation
 
@@ -99,16 +98,16 @@ Navigate to the project's root directory.
 
 ### Contract creator - Execute the following command:(Windows)
    ```bash
-        pytest .tests\consumer\tests\
+        pytest consumer\tests\
         or 
-        pytest .tests\consumer\tests\test_{file_name}.py
+        pytest consumer\tests\test_{file_name}.py
    ```
 
 ### Contract creator - Execute the following command:(Linux)
    ```bash
-        pytest ./tests/consumer/tests/
+        pytest consumer/tests/
         # or
-        pytest ./tests/consumer/tests/test_{file_name}.py
+        pytest consumer/tests/test_{file_name}.py
    ```
 
 Note: Check the contracts created on ./broker/contracts/
@@ -116,9 +115,9 @@ Note: Check the contracts created on ./broker/contracts/
 ### Check the contracts created on ./broker/contracts/(Windows)
 
    ```bash
-        pytest .tests/provider/tests/
+        pytest provider/tests/
         # or
-        pytest .tests/provider/tests/test_{file_name}.py
+        pytest provider/tests/test_{file_name}.py
    ```
 
 ## Using Pact Broker (Docker)(Local)
@@ -130,13 +129,14 @@ Note: The contracts created by consumer SHOULD exists OR you need to run the con
 
 1 - Open a terminal and execute start the pactfoundation/pact-broker and postgres images
    ```bash
-      docker-compose -f tests/broker/docker-compose.yml up
+      docker-compose -f broker/docker-compose.yml up
    ```
 2 - Check if the PactBrocker is running
    - Open a browser and use this URL: http://localhost:9292
-3 - Publish the contracts on PactBroker
+
+3 - Open a new terminal and Publish the contracts on PactBroker
    ```bash
-      pact-broker publish tests/broker/contracts/countries --consumer-app-version=1.0.0 --broker-base-url=http://localhost:9292 --tag=dev
+      pact-broker publish broker/contracts/countries --consumer-app-version=1.0.0 --broker-base-url=http://localhost:9292 --tag=dev
    ```
 4 - Run the Verify to check the Pact: Doc: https://docs.pact.io/implementation_guides/python/docs/provider
    ```bash
@@ -145,7 +145,7 @@ Note: The contracts created by consumer SHOULD exists OR you need to run the con
    or 
    Run the Verify to check all contracts
    ```bash
-      pact-verifier --provider-base-url="http://localhost:5000/" --provider-app-version="1.0.0" --pact-broker-url=http://localhost:9292 --provider="provider" --publish-verification-results --enable-pending 
+      pact-verifier --provider-base-url="https://restcountries.com/v3.1" --provider-app-version="1.0.0" --pact-broker-url=http://localhost:9292 --provider="provider-restcountries" --publish-verification-results --enable-pending 
    ```
 Tip: Build the contracts using a custom provider name, ex: provider-<your api name>, this way, you can store a lot of contracts and execute those test by group, in this case using the provider name.
 
@@ -175,7 +175,7 @@ Note: The contracts created by consumer SHOULD exists OR you need to run the con
 #### Publish
 1 - Publish the contracts on PactBroker
    ```bash
-      pact-broker publish .\tests\broker\contracts\petapi_contracts\ --consumer-app-version=1.0.0 --broker-base-url=API_HUB_BROKER_BASE_URL --broker-token=API_HUB_BROKER_TOKEN --tag=dev
+      pact-broker publish .\broker\contracts\countries\ --consumer-app-version=1.0.0 --broker-base-url=$API_HUB_BROKER_BASE_URL --broker-token=$API_HUB_BROKER_TOKEN --tag=dev
    ```
 #### Verifier
 2 - Run the Verify to check the Pact: Doc: https://docs.pact.io/implementation_guides/python/docs/provider
@@ -197,3 +197,9 @@ Note: The contracts created by consumer SHOULD exists OR you need to run the con
 Note:
  - --pact-broker-base-url=<API_HUB_BROKER_BASE_URL> -> Log in to PactFlow → Check the URL (e.g., https://<your-org>.pactflow.io).
  - --broker-token=<API_HUB_BROKER_TOKEN> -> Note your PactFlow API token (found in Settings > API Tokens).
+
+
+### Docs:
+Pact CLI: https://github.com/pact-foundation/pact-ruby-standalone/releases
+Pact-python: https://docs.pact.io/implementation_guides/python
+
