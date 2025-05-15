@@ -121,7 +121,7 @@ Note: Check the contracts created on ./broker/contracts/
         pytest .tests/provider/tests/test_{file_name}.py
    ```
 
-### Using Pact Broker (Docker)
+## Using Pact Broker (Docker)(Local)
 
 #### Dependencies:
 Note: The contracts created by consumer SHOULD exists OR you need to run the consumer tests to build the contracts.
@@ -145,8 +145,9 @@ Note: The contracts created by consumer SHOULD exists OR you need to run the con
    or 
    Run the Verify to check all contracts
    ```bash
-      pact-verifier --provider-base-url="https://restcountries.com/v3.1" --provider-app-version="1.0.0" --pact-broker-url=http://localhost:9292 --provider="provider" --publish-verification-results --enable-pending 
+      pact-verifier --provider-base-url="http://localhost:5000/" --provider-app-version="1.0.0" --pact-broker-url=http://localhost:9292 --provider="provider" --publish-verification-results --enable-pending 
    ```
+Tip: Build the contracts using a custom provider name, ex: provider-<your api name>, this way, you can store a lot of contracts and execute those test by group, in this case using the provider name.
 
 #### Using tags:
 3 - Publish the contracts on PactBroker
@@ -164,5 +165,35 @@ Note: The contracts created by consumer SHOULD exists OR you need to run the con
    ```
 CLI command documentation: https://docs.pact.io/implementation_guides/python/docs/provider
 
+## Using PactFlow Account - Broker remote(Execution Local)
 
+#### Dependencies:
+Note: The contracts created by consumer SHOULD exists OR you need to run the consumer tests to build the contracts.
 
+#### How to run?
+
+#### Publish
+1 - Publish the contracts on PactBroker
+   ```bash
+      pact-broker publish .\tests\broker\contracts\petapi_contracts\ --consumer-app-version=1.0.0 --broker-base-url=API_HUB_BROKER_BASE_URL --broker-token=API_HUB_BROKER_TOKEN --tag=dev
+   ```
+#### Verifier
+2 - Run the Verify to check the Pact: Doc: https://docs.pact.io/implementation_guides/python/docs/provider
+   ```bash
+      pact-verifier --provider-base-url="http://localhost:5000/" --pact-broker-url=API_HUB_BROKER_BASE_URL --pact-broker-token=API_HUB_BROKER_TOKEN --provider-app-version="1.0.0" --provider="provider" --publish-verification-results --enable-pending
+   ```
+#### record-deployment
+3 - Run the record-deployment to: Tracks which versions are in which environments(e.g., test, staging, prod) (critical for can-i-deploy)
+   ```bash
+      pact-broker record-deployment --pacticipant='provider' --version=1.0.0 --environment=test --broker-base-url=API_HUB_BROKER_BASE_URL --broker-token=API_HUB_BROKER_TOKEN
+
+   ```
+#### can-i-deploy
+4 - Run the can-i-deploy to: Ensures no breaking changes will disrupt live systems.
+   ```bash
+      pact-broker can-i-deploy --pacticipant='provider' --version=1.0.0 --environment=test --broker-base-url=API_HUB_BROKER_BASE_URL --broker-token=API_HUB_BROKER_TOKEN
+   ```
+
+Note:
+ - --pact-broker-base-url=<API_HUB_BROKER_BASE_URL> -> Log in to PactFlow → Check the URL (e.g., https://<your-org>.pactflow.io).
+ - --broker-token=<API_HUB_BROKER_TOKEN> -> Note your PactFlow API token (found in Settings > API Tokens).
