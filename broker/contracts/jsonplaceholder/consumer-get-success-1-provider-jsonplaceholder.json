@@ -1,14 +1,13 @@
 {
   "consumer": {
-    "name": "contract-with-same-structure"
+    "name": "consumer-get-success-1"
   },
   "provider": {
-    "name": "using-like"
+    "name": "provider-jsonplaceholder"
   },
   "interactions": [
     {
       "description": "A request for user with id 1",
-      "providerState": "A user with id 1 exists",
       "request": {
         "method": "GET",
         "path": "/posts/100",
@@ -18,8 +17,7 @@
           "Accept-Encoding": "gzip, deflate",
           "Accept": "*/*",
           "Connection": "keep-alive",
-          "Version": "HTTP/1.1",
-          "Content-Type": "application/json"
+          "Version": "HTTP/1.1"
         }
       },
       "response": {
@@ -27,15 +25,10 @@
         "headers": {
         },
         "body": {
-          "userId": 0,
-          "id": 0,
-          "title": "String",
-          "body": "String"
-        },
-        "matchingRules": {
-          "$.body": {
-            "match": "type"
-          }
+          "userId": 10,
+          "id": 100,
+          "title": "at nam consequatur ea labore ea harum",
+          "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
         }
       }
     }

@@ -1,26 +1,23 @@
 {
   "consumer": {
-    "name": "contract-with-same-structure"
+    "name": "consumer-say-hello"
   },
   "provider": {
-    "name": "using-like-with-less-required-elements"
+    "name": "provider"
   },
   "interactions": [
     {
-      "description": "A request for user with id 1",
-      "providerState": "A user with id 1 exists",
+      "description": "A request for get Say Hello",
       "request": {
         "method": "GET",
-        "path": "/posts/100"
+        "path": "/"
       },
       "response": {
         "status": 200,
         "headers": {
         },
         "body": {
-          "userId": 0,
-          "id": 0,
-          "body": "String"
+          "message": "Hello!"
         },
         "matchingRules": {
           "$.body": {

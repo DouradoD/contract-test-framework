@@ -1,9 +1,9 @@
 {
   "consumer": {
-    "name": "contract-with-same-structure"
+    "name": "consumer-get-success"
   },
   "provider": {
-    "name": "and-values"
+    "name": "provider-reqrest"
   },
   "interactions": [
     {

@@ -1,18 +1,12 @@
-# provider/tests/test_verify.py
 import os
 from pact import Verifier
 import pytest
-import sys
-import io
-
-import requests
 import logging
 import http.client
-import json
+
 http.client.HTTPConnection.debuglevel = 1
 logging.basicConfig(level=logging.DEBUG)
-os.environ['PACT_DEBUG'] = 'true'  # Gets more verbose output
-
+os.environ['PACT_DEBUG'] = 'true'
 os.environ["PYTHONIOENCODING"] = "utf-8"
 
 PROVIDER_BASE_URL = "https://reqres.in/api"

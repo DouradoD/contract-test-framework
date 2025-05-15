@@ -18,7 +18,7 @@ def test_build_contract_with_the_same_structure_and_values(contract_dir_path):
     }
 })
     pact = Consumer('consumer-get-country-success').has_pact_with(
-        Provider('provider'),
+        Provider('provider-restcountries'),
         pact_dir=f'{contract_dir_path}/countries',
         log_dir='./logs'
     )
@@ -56,7 +56,7 @@ def test_build_contract_with_invalid_values(contract_dir_path):
     expected = {"message":"Not Found","status":404}
 
     pact = Consumer('consumer-get-country-bad-request').has_pact_with(
-        Provider('provider'),
+        Provider('provider-restcountries'),
         pact_dir=f'{contract_dir_path}/countries',
         log_dir='./logs'
     )

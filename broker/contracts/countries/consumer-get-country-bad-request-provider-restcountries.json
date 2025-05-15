@@ -1,25 +1,24 @@
 {
   "consumer": {
-    "name": "bad-request-consumer"
+    "name": "consumer-get-country-bad-request"
   },
   "provider": {
-    "name": "provider"
+    "name": "provider-restcountries"
   },
   "interactions": [
     {
       "description": "A request for user with id 1",
-      "providerState": "A user with id 1 exists",
       "request": {
         "method": "GET",
-        "path": "/us/2"
+        "path": "/name/3"
       },
       "response": {
-        "status": 401,
+        "status": 404,
         "headers": {
         },
         "body": {
-          "error": "Missing API key.",
-          "how_to_get_one": "https://reqres.in/signup"
+          "message": "Not Found",
+          "status": 404
         },
         "matchingRules": {
           "$.body": {

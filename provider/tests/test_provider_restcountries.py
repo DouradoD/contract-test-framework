@@ -2,13 +2,9 @@
 import os
 from pact import Verifier
 import pytest
-import sys
-import io
-
-import requests
 import logging
 import http.client
-import json
+
 http.client.HTTPConnection.debuglevel = 1
 logging.basicConfig(level=logging.DEBUG)
 os.environ['PACT_DEBUG'] = 'true'  # Gets more verbose output

@@ -3,7 +3,7 @@
     "name": "consumer-get-country-success"
   },
   "provider": {
-    "name": "provider"
+    "name": "provider-restcountries"
   },
   "interactions": [
     {

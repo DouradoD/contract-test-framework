@@ -8,8 +8,8 @@ def test_build_contract_with_the_same_structure_and_values(contract_dir_path, co
     expected = {"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}}
 
 
-    pact = Consumer('contract-with-same-structure').has_pact_with(
-        Provider('and-values'),
+    pact = Consumer('consumer-get-success').has_pact_with(
+        Provider('provider-reqrest'),
         pact_dir=f'{contract_dir_path}/users',
         log_dir='./logs'
     )
@@ -44,8 +44,8 @@ def test_build_contract_with_the_same_structure_and_values(contract_dir_path, co
 def test_build_contract_with_invalid_values(contract_dir_path):
     expected = {'error': 'Missing API key.', 'how_to_get_one': 'https://reqres.in/signup'}
 
-    pact = Consumer('bad-request-consumer').has_pact_with(
-        Provider('provider'),
+    pact = Consumer('consumer-get-fail-bad-request').has_pact_with(
+        Provider('provider-reqrest'),
         pact_dir=f'{contract_dir_path}/users',
         log_dir='./logs'
     )
@@ -55,7 +55,6 @@ def test_build_contract_with_invalid_values(contract_dir_path):
     
     (
         pact
-        .given(f'A user with id 1 exists')
         .upon_receiving(f'A request for user with id 1')
         .with_request(
             method='GET', 
@@ -75,7 +74,3 @@ def test_build_contract_with_invalid_values(contract_dir_path):
         assert response.json() == expected
     
     pact.stop_service()
-
-def get():
-    response = requests.get(url='https://reqres.in/api/us/2')
-    print(response)

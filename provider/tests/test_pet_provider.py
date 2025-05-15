@@ -4,15 +4,15 @@ import pytest
 
 os.environ["PYTHONIOENCODING"] = "utf-8"
 
-PROVIDER_BASE_URL = "https://jsonplaceholder.typicode.com"
+PROVIDER_BASE_URL = "http://localhost:5000/"
 
 @pytest.mark.parametrize("contract_name", 
-                    ['contract-with-same-structure-and-values.json',
-                     'contract-with-same-structure-using-like-with-less-required-elements.json',
-                     'contract-with-same-structure-using-like.json'])
+                    ['consumer-say-hello-provider.json',
+                     'consumer-get-pet-provider.json',
+                     'consumer-pacth-pet-provider.json'])
 def test_provider_compliance(contract_name, contract_dir_path):
     # Path to the contract file
-    CONTRACT_DIR = os.path.join(contract_dir_path, 'jsonplaceholder')
+    CONTRACT_DIR = os.path.join(contract_dir_path, 'petapi_contracts')
     CONTRACT_PATH = os.path.join(CONTRACT_DIR, contract_name)
     verifier = Verifier(
         provider='Provider',
