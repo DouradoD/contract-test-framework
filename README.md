@@ -152,7 +152,7 @@ Tip: Build the contracts using a custom provider name, ex: provider-<your api na
 #### Using tags:
 3 - Publish the contracts on PactBroker
    ```bash
-      pact-broker publish tests/broker/contracts/<folder-with-the-pact-contracts> --consumer-app-version=1.0.1 --broker-base-url=http://localhost:9292 --tag=dev
+      pact-broker publish broker/contracts/countries --consumer-app-version=1.0.1 --broker-base-url=http://localhost:9292 --tag=dev
    ```
 4 - Run the Verify to check the Pact: Doc: https://docs.pact.io/implementation_guides/python/docs/provider
    ```bash
@@ -175,7 +175,7 @@ Note: The contracts created by consumer SHOULD exists OR you need to run the con
 #### Publish
 1 - Publish the contracts on PactBroker
    ```bash
-      pact-broker publish .\broker\contracts\countries\ --consumer-app-version=1.0.0 --broker-base-url=$API_HUB_BROKER_BASE_URL --broker-token=$API_HUB_BROKER_TOKEN --tag=dev
+      pact-broker publish broker/contracts/countries --consumer-app-version=1.0.0 --broker-base-url=$API_HUB_BROKER_BASE_URL --broker-token=$API_HUB_BROKER_TOKEN --tag=dev
    ```
 #### Verifier
 2 - Run the Verify to check the Pact: Doc: https://docs.pact.io/implementation_guides/python/docs/provider
